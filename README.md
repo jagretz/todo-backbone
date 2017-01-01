@@ -2,6 +2,9 @@
 #Setup
 #Access
 - *Setup a github pages with (optional) custom URL*
+- Redirect to blog
+- Setup pages for repositories
+
 #Things to complete :/
 - remove id attr, place with class & data-hook
 - backbone.nested is included, now apply backbone.nested to your models
