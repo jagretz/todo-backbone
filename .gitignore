@@ -1,6 +1,6 @@
-# 
 # git-scm "Ignoring Files" https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#Ignoring-Files
 # .gitignore templates https://github.com/github/gitignore
 
 *node_modules
 *.log
+TODO.md
