@@ -18,13 +18,13 @@
         <h1>todo</h1>
     </header>
     
-    <section id="todo-container" class="todoapp todo-container">
+    <section data-hook="todo-app" class="todo-container">
 
         <section id="main" class="main">           
             <input id="new-todo" class="new-todo" placeholder="What needs to be done?" type="" name="" value="" autofocus>
 
-            <!--<input id="toggle-all" class="toggle-all" type="checkbox" name="" value="">
-            <label for="toggle-all">Mark all as complete</label>-->
+            <input id="toggle-all" class="toggle-all" type="checkbox">
+            <label for="toggle-all">Mark all as complete</label>
             <ul id="todo-list" class="todo-list">
 
                 <script id="item-template" type="text/x-handlebars-template">

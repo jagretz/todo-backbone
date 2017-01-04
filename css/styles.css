@@ -1,29 +1,227 @@
-/* Do I want to add Eric Meyers base css? 
-*/
-
-html,
-body {
-	margin: 0;
-	padding: 0;
-}
-
 body {
 	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	line-height: 1.4em;
+	line-height: 1.2rem;
 	background: #f5f5f5;
 	color: #4d4d4d;
-	min-width: 230px;
 	margin: 0 auto;
-	font-weight: 300;
+	min-width: 230px;
+	max-width: 600px;
 }
 
 .hidden {
 	display: none;
 }
 
-.todoapp {}
-.new-todo {}
-.todo-list {}
-.edit {}
-.footer {}
-.todo-list {}
+.todo-container {
+	position: relative;
+	margin: 1rem 0 0 0;
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+.header {
+	text-align: center;
+	padding: 2rem 1rem;
+}
+.header h1 {
+	font-size: 4rem;
+}
+.main {
+	position: relative;
+	background: #fff;
+}
+
+.new-todo,
+.edit {
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	padding: .5rem;
+
+	font-size: 1.2rem;
+	color: inherit;
+
+	border: 0;
+	outline: none;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.new-todo {
+	padding: 1rem;
+	border: none;
+	background: rgba(0, 0, 0, 0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+
+.edit {
+	position: relative;
+}
+.footer {
+	position: relative;
+}
+.todo-list {
+    list-style: none;
+}
+.todo-list li {
+	position: relative;
+	font-size: 1.2rem;
+	border-bottom: 1px solid #ededed;
+}
+
+.todo-list li:last-child {
+	border-bottom: none;
+}
+
+.todo-list li.editing {
+	border-bottom: none;
+	padding: 0;
+}
+.todo-list li.editing .view {
+	display: none;
+}
+
+.todo-list li label {
+    padding: 1rem;
+    margin-left: 2rem;  /*1rem*/
+    display: inline-block; /*block*/
+    word-break: break-all;
+}
+
+.todo-list li .toggle {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    margin: auto 1rem; /*auto 0*/
+    border: none;
+    text-align: center;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+/*.todo-list li .toggle::after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
+}
+
+.todo-list li .toggle:checked::after {
+	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+}*/
+
+.todo-list li .edit {
+	display: none;
+}
+
+
+button, 
+input[type="checkbox"] {
+  outline: none;
+}
+
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+}
+
+/* render input placholder in italics with a lighter color */
+.todo-container input::-webkit-input-placeholder {
+	font-style: italic;
+	color: #e6e6e6;
+}
+.todo-container input::-moz-placeholder {
+	font-style: italic;
+	color: #e6e6e6;
+}
+.todo-container input::input-placeholder {
+	font-style: italic;
+	color: #e6e6e6;
+}
+
+.todo-count {
+	position: absolute;
+    left: 0;
+    margin-left: 1rem;
+}
+
+/*
+footer
+*/
+
+.todo-container footer {
+	padding: 10px 15px;
+	height: 20px;
+	background: #fff;
+	color: #777;
+	text-align: center;
+	border-top: 1px solid #e6e6e6;
+}
+.todo-container .footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	/* Taken directly from todoMVC - I didn't want to have to recreate that! */
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+
+/*
+Filters
+*/
+
+.filters {
+	list-style: none;
+	/* center content */
+	position: absolute;
+	right: 0;
+	left: 0;
+}
+.filters li {
+	display: inline;
+}
+.filters li a {
+	color: inherit;
+	margin: .3rem;
+	padding: .2rem .4rem;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+.filters li a.selected,
+.filters li a:hover {
+	border-color: rgba(65, 175, 50, 0.2);
+	background-color: rgba(65, 175, 50, 0.1);
+}
+.filters li a.selected {
+	border-color: rgba(65, 175, 50, 0.4);
+	background-color: rgba(65, 175, 50, 0.2);
+}
+
+
+
+
+
+/*
+Things I may want to include
+
+-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+
+	-webkit-appearance: none;
+	appearance: none;
+
+
+
+*/

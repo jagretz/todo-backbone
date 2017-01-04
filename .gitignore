@@ -1,6 +1,13 @@
 # git-scm "Ignoring Files" https://git-scm.com/book/en/v2/Git-Basics-Recording-Changes-to-the-Repository#Ignoring-Files
 # .gitignore templates https://github.com/github/gitignore
 
-*node_modules
+node_modules/*
 *.log
 TODO.md
+
+#Visual Studio Code Editor
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
