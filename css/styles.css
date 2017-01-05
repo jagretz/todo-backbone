@@ -15,7 +15,8 @@ body {
 .todo-container {
 	position: relative;
 	margin: 1rem 0 0 0;
-	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 
+				0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -71,6 +72,9 @@ body {
 .todo-list li:last-child {
 	border-bottom: none;
 }
+.todo-list li:only-child {
+	border-bottom: none;
+}
 
 .todo-list li.editing {
 	border-bottom: none;
@@ -97,17 +101,35 @@ body {
     width: 1.5rem;
     height: 1.5rem;
 }
-/*.todo-list li .toggle::after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#ededed" stroke-width="3"/></svg>');
-}
 
-.todo-list li .toggle:checked::after {
-	content: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
-}*/
 
 .todo-list li .edit {
 	display: none;
 }
+
+.todo-list li .destroy {
+    position: absolute;
+    bottom: 0;
+    top: 0;
+	right: 0;
+    margin: auto 1rem; /*auto 0*/
+    border: none;
+    text-align: center;
+	font-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+	color: rgba(175, 50, 50, 0.3);
+	transition: color 0.4s ease;
+}
+
+.todo-list li .destroy::after {
+	content: 'x';
+}
+
+.todo-list li .destroy:hover {
+	color: rgb(175, 50, 50);
+}
+
 
 
 button, 
@@ -200,13 +222,21 @@ Filters
 }
 .filters li a.selected,
 .filters li a:hover {
-	border-color: rgba(65, 175, 50, 0.2);
-	background-color: rgba(65, 175, 50, 0.1);
+	border-color: rgba(50, 175, 175, 0.2);
+	background-color: rgba(50, 175, 175, 0.1);
 }
 .filters li a.selected {
-	border-color: rgba(65, 175, 50, 0.4);
-	background-color: rgba(65, 175, 50, 0.2);
+	border-color: rgba(50, 175, 175, 0.4);
+	background-color: rgba(50, 175, 175, 0.2);
 }
+
+/*
+COLORS
+
+green: rgb(65, 175, 50)
+blue:  rgb(50, 175, 175)
+red:   rgb(175, 50, 50)
+*/
 
 
 
