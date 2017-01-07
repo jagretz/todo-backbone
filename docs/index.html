@@ -32,10 +32,30 @@
                     <div class="view">
                         {{#if complete}}
                             <input class="toggle" type="checkbox" checked>
+                            <label class="todo">
+                                <span class="todo-text">{{ title }}</span>
+                            </label>   
                         {{else}}
                             <input class="toggle" type="checkbox">
+                            <label class="todo">
+                                <span class="todo-text">{{ title }}</span>
+                            </label> 
                         {{/if}}
-                        <label>{{ title }}</label>
+                        <!--<label class="todo">
+                            {{#if complete}}
+                                <input class="toggle" type="checkbox" checked>
+                                <span class="todo-text">{{ title }}</span>
+                            {{else}}
+                                <input class="toggle" type="checkbox">
+                                <span class="todo-text">{{ title }}</span>
+                            {{/if}}
+                        </label>-->
+                        <!--{{#if complete}}
+                            <input class="toggle" type="checkbox" checked>
+                        {{else}}
+                            <input class="toggle" type="checkbox">
+                        {{/if}}-->
+                        <!--<label>{{ title }}</label>-->
                         <button class="destroy"></button>
                     </div>
                     <input class="edit" value="{{ title }}">

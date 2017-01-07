@@ -2,6 +2,9 @@
 This application was written using BackboneJS & Handlebars Templating. The idea was originally concieved from http://todomvc.com/ 
 I wanted to learn a few new technolgies so I teh examples as a template for writting my own interpretation of TodoMVC.
 
+###Demo
+Checkout a [demo of the working application here](https://jagretz.github.io/todo-backbone/)!
+
 ###Project Goal(s)
 The goal of this project is to learn and play with several new technologies. To get specific, I started a new gig with a 
 couple projects in maintenance and a couple that will be using some newer technology. The projects to be maintained and 
@@ -41,8 +44,3 @@ This project uses a mix of different tech including:
 
 # Attributions
 Idea and concept comes from Addi Osmani's version of [TodoMCV](http://todomvc.com/)
-
-###Demo
-Checkout a [demo of the working application here](https://jagretz.github.io/todo-backbone/)!
-
-.

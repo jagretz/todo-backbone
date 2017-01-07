@@ -80,13 +80,19 @@ body {
 	border-bottom: none;
 	padding: 0;
 }
+.todo-list li.editing .edit {
+	display: block;
+	/*width:*/
+	padding: 1rem;
+	margin: 0;
+}
 .todo-list li.editing .view {
 	display: none;
 }
 
 .todo-list li label {
     padding: 1rem;
-    margin-left: 2rem;  /*1rem*/
+    /*margin-left: 2rem;  1rem*/
     display: inline-block; /*block*/
     word-break: break-all;
 }
@@ -261,3 +267,121 @@ Things I may want to include
 
 
 */
+
+
+/* todo svg*/
+/* Using Font-Awesome for their SVG images */
+
+.todo {
+  cursor: pointer;
+  display: block;
+}
+/*.todo-text {
+	-webkit-user-select: none;     
+	-moz-user-select: none; 
+		-ms-user-select: none; 
+		-o-user-select: none;
+			user-select: none;
+}*/
+
+/* Remove the default checkbox */
+/*.todo input[type="checkbox"] {
+  display: none;
+}
+
+.todo input[type="checkbox"] + .todo-text::before {
+  content: "\f096";
+  display: inline-block;
+  width: 2.5rem;
+  font-family: "FontAwesome";
+  -webkit-font-smoothing: antialiased;
+}
+
+.todo input[type="checkbox"] + .todo-text::before,
+.todo input[type="checkbox"]:checked + .todo-text::before,
+.todo input[type="checkbox"]:disabled + .todo-text:before {
+  font-size: 2rem;
+  vertical-align: bottom;
+}
+
+.todo input[type="checkbox"]:checked + .todo-text::before {
+  content: "\f14a";
+  color: #06a3e9;
+  animation: check 160ms ease-in ;
+}
+
+.todo input[type="checkbox"]:disabled + .todo-text {
+  color: #ccc;
+}
+
+.todo input[type="checkbox"]:disabled + .todo-text::before {
+  content: "\f0c8";
+}*/
+
+
+
+
+/* Add checkbox from FontAwesome sister*/
+
+
+.view input[type="checkbox"] {
+  /*display: none;*/
+  opacity: 0;
+}
+
+.view input[type="checkbox"] + label .todo-text::before,
+.view input[type="checkbox"]:checked + label .todo-text::before,
+.view input[type="checkbox"]:disabled + label .todo-text:before {
+  font-size: 2rem;
+  vertical-align: bottom;
+}
+
+.view input[type="checkbox"] + label .todo-text::before {
+  content: "\f096";
+  display: inline-block;
+  width: 2.5rem;
+  font-family: "FontAwesome";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Add checkmark checkbox from FontAwesome */
+.view input[type="checkbox"]:checked + label .todo-text::before {
+  content: "\f14a";
+  color: #06a3e9;
+  animation: check 160ms ease-in ;
+}
+
+/* Colorize when disabled */
+.view input[type="checkbox"]:disabled + label .todo-text {
+  color: #ccc;
+}
+
+.view input[type="checkbox"]:disabled + label .todo-text::before {
+  content: "\f0c8";
+}
+
+
+
+
+
+/* Setup animation (experimental tech) */
+@-webkit-keyframes check {
+  0%   { transform: scale(0); }
+  90%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+@-moz-keyframes check {
+  0%   { transform: scale(0); }
+  90%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+@-o-keyframes check {
+  0%   { transform: scale(0); }
+  90%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+@keyframes  check {
+  0%   { transform: scale(0); }
+  90%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

@@ -15,6 +15,7 @@ var app = app || {};
         template: Handlebars.compile( $('#item-template').html() ),
         events: {
             'dblclick label': 'edit',
+            'touchend label': 'edit',
             'blur .edit': 'close',
             'click .destroy': 'clear',
             'keypress .edit': 'updateOnEnter',
@@ -49,7 +50,7 @@ var app = app || {};
             // if the todo is marked complete, add the complete style
             this.$el.toggleClass('complete', this.model.get('complete'));
             this.toggleVisible();
-			// this.$input = this.$('.edit');
+            this.$input = this.$('.edit');
             return this;
         },
         // update the styling and focus on the elem
