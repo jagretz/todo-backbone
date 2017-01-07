@@ -11,7 +11,7 @@ var app = app || {};
      */
     app.AppView = Backbone.View.extend({
         // bind to an existing element
-        el: '#todoapp',
+        el: '[data-hook="todo-app"]',
         // template for the stats at the bottom of the app
         // statsTemplate: _.template( $('#stats-template').html() ),
         statsTemplate: Handlebars.compile($('#stats-template').html()),

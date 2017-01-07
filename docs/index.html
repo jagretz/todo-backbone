@@ -8,20 +8,23 @@
     <meta name="keywords" content="Backbone, Backbone.localStorage, Backbone.Nested, Handlebars, Underscore, jQuery">
     <meta name="description" content="A todo app created as a SPA primarily using backbone and handlebars.">
     <meta name="author" content="jagretz">
-    <link rel="stylesheet" href="css/reset.css">
+
+    <link rel="stylesheet" href="css/lib/reset.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
+    <header id="header" class="header">
+        <h1>todo</h1>
+    </header>
+    
+    <section data-hook="todo-app" class="todo-container">
 
-    <section id="todo-container" class="todoapp">
-        <header id="header" class="header">
-            <h1>todos</h1>
+        <section id="main" class="main">           
             <input id="new-todo" class="new-todo" placeholder="What needs to be done?" type="" name="" value="" autofocus>
-        </header>
 
-        <section id="main" class="main">
-            <input id="toggle-all" class="toggle-all" type="checkbox" name="" value="">
+            <input id="toggle-all" class="toggle-all" type="checkbox">
             <label for="toggle-all">Mark all as complete</label>
             <ul id="todo-list" class="todo-list">
 
