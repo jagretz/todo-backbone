@@ -19,13 +19,13 @@ var app = app || {};
         events: {
             'keypress #new-todo': 'createOnEnter',
             'click #clear-complete': 'clearComplete',
-            'click #toggle-all': 'toggleAllComplete'
+            // 'click [data-hook="toggle-all"]': 'toggleAllComplete'
         },
         // initialization and setup
         initialize: function () {
             // events.call(this);
             // this.$() finds elements relative to this.$el
-            this.allCheckbox = this.$('#toggle-all')[0];
+            // this.allCheckbox = this.$('[data-hook="toggle-all"]')[0];
             this.$input = this.$('#new-todo');
             this.$footer = this.$('#footer');
             this.$main = this.$('#main');
@@ -52,10 +52,8 @@ var app = app || {};
             var remaining = app.todos.remaining().length;
 
             if (app.todos.length) {
-                this.$main.show();
                 this.$footer.show();
 
-                //
                 this.$footer.html(this.statsTemplate({
                     complete: complete,
                     remaining: remaining
@@ -66,12 +64,10 @@ var app = app || {};
                     .filter('[href="#/' + (app.TodoFilter || '') + '"]')
                     .addClass('selected');
             } else {
-                // hide the main and footer
-                this.$main.hide();
                 this.$footer.hide();
             }
 
-            this.allCheckbox.checked = !remaining;
+            // this.allCheckbox.checked = !remaining;
         },
         // add a single todo to the list of todos.
         // creates a view and appends to the end of the todos view

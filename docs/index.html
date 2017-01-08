@@ -22,10 +22,10 @@
     <section data-hook="todo-app" class="todo-container">
 
         <section id="main" class="main">           
-            <input id="new-todo" class="new-todo" placeholder="What needs to be done?" type="" name="" value="" autofocus>
+            <input id="new-todo" class="new-todo" placeholder="What to do?" autofocus>
+            <!--<input id="toggle-all" class="toggle-all" type="checkbox" data-hook="toggle-all">
+            <label for="toggle-all" class="toggle-all">Mark all as complete</label>-->
 
-            <input id="toggle-all" class="toggle-all" type="checkbox">
-            <label for="toggle-all">Mark all as complete</label>
             <ul id="todo-list" class="todo-list">
 
                 <script id="item-template" type="text/x-handlebars-template">
@@ -68,27 +68,29 @@
 
             <script id="stats-template" type="text/x-handlebars-template">
                 <span id="todo-count" class="todo-count">
-                    <strong>{{ remaining }}</strong>
-                    {{#if remaining}}
-                        {{'item '}}
-                    {{else}}
-                        {{'items '}}
-                    {{/if}}
-                    left
+                    <strong>
+                        {{ remaining }}
+                        {{#if remaining}}
+                            {{'item '}}
+                        {{else}}
+                            {{'items '}}
+                        {{/if}}
+                        left
+                    </strong>
                 </span>
                 <ul id="filters" class="filters">
-                <li>
-                    <a class="selected" href="#/">All</a>
-                </li>
-                <li>
-                    <a href="#/active">Active</a>
-                </li>
-                <li>
-                    <a href="#/complete">Complete</a>
-                </li>
+                    <li>
+                        <a class="selected" href="#/">All</a>
+                    </li>
+                    <li>
+                        <a href="#/active">Active</a>
+                    </li>
+                    <li>
+                        <a href="#/complete">Complete</a>
+                    </li>
                 </ul>
                 {{#if complete}}
-                <button id="clear-complete" class="clear-complete">Clear Complete ({{ complete }})</button>
+                    <button id="clear-complete" class="clear-complete">Clear Complete ({{ complete }})</button>
                 {{/if}}
             </script>
 

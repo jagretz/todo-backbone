@@ -42,7 +42,7 @@ var app = app || {};
 			// https://github.com/tastejs/todomvc/issues/469
             // ???
             if (this.model.changed.id !== undefined) {
-                return;
+                return this;
             }
 
             this.$el.html(this.template(this.model.attributes)); // or this.model.toJSON(); -- which is more costly?

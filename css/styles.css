@@ -342,13 +342,26 @@ Things I may want to include
   width: 2.5rem;
   font-family: "FontAwesome";
   -webkit-font-smoothing: antialiased;
+  color: #4d4d4d;
+}
+
+.view input[type="checkbox"]:checked + label .todo-text {
+	color: #d9d9d9;
+	text-decoration: line-through;
+	/*experimental tech*/
+	-webkit-text-decoration-line: line-through;
+	   -moz-text-decoration-line: line-through;
+	        text-decoration-line: line-through;
+	-webkit-text-decoration-color: #06a3e9;
+	   -moz-text-decoration-color: #06a3e9;
+	        text-decoration-color: #06a3e9;
 }
 
 /* Add checkmark checkbox from FontAwesome */
 .view input[type="checkbox"]:checked + label .todo-text::before {
   content: "\f14a";
   color: #06a3e9;
-  animation: check 160ms ease-in ;
+  animation: check 160ms ease-in;
 }
 
 /* Colorize when disabled */
