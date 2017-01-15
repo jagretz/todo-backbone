@@ -1,18 +1,24 @@
-var app = app || {};
-
-(function() {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'handlebars',
+    'text!templates/todos.html',
+    'constants/app.const',
+    'common/values'
+], function ($, _, Backbone, Handlebars, todosTemplate, Constants, Values) {
     'use strict';
 
-    var KEYS = app.const.KEYS;
+    var KEYS = Constants.KEYS;
 
     /**
      * Associates with an individual todo.
      */
-    app.TodoView = Backbone.View.extend({
+    var TodoView = Backbone.View.extend({
         tagName: 'li',
         // cache the template function for a single todo
         // template: _.template( $('#item-template').html() ),
-        template: Handlebars.compile( $('#item-template').html() ),
+        template: Handlebars.compile($('#item-template').html()),
         events: {
             'dblclick label': 'edit',
             'touchend label': 'edit',
@@ -24,22 +30,22 @@ var app = app || {};
         },
         // listen for changes on the model
         // re-renders immediately
-        initialize: function() {
+        initialize: function () {
             // prefer `listenTo()` over `on()` in order to track events and remove events if needed
             this.listenTo(this.model, 'change', this.render);
             this.listenTo(this.model, 'destroy', this.remove);
             this.listenTo(this.model, 'visible', this.toggleVisible); // custom event
         },
         // render the todo title
-        render: function() {
+        render: function () {
             // ???
             // Backbone LocalStorage is adding `id` attribute instantly after
-			// creating a model.  This causes our TodoView to render twice. Once
-			// after creating a model and once on `id` change.  We want to
-			// filter out the second redundant render, which is caused by this
-			// `id` change.  It's known Backbone LocalStorage bug, therefore
-			// we've to create a workaround.
-			// https://github.com/tastejs/todomvc/issues/469
+            // creating a model.  This causes our TodoView to render twice. Once
+            // after creating a model and once on `id` change.  We want to
+            // filter out the second redundant render, which is caused by this
+            // `id` change.  It's known Backbone LocalStorage bug, therefore
+            // we've to create a workaround.
+            // https://github.com/tastejs/todomvc/issues/469
             // ???
             if (this.model.changed.id !== undefined) {
                 return this;
@@ -54,13 +60,13 @@ var app = app || {};
             return this;
         },
         // update the styling and focus on the elem
-        edit: function() {
+        edit: function () {
             this.$el.addClass('editing');
             this.$input.focus();
         },
         // Save updates to the todo
         // remove editing styles
-        close: function() {
+        close: function () {
             var value = this.$input.val().trim();
             // ??? read
             // We don't want to handle blur events from an item that is no
@@ -82,7 +88,7 @@ var app = app || {};
             this.$el.removeClass('editing');
         },
         // close the todo
-        updateOnEnter: function(event) {
+        updateOnEnter: function (event) {
             if (event.which === KEYS.ENTER_KEY) this.close();
         },
         // Toggle the complete state of the model
@@ -90,22 +96,22 @@ var app = app || {};
             this.model.toggle();
         },
         // If marked hidden, add toggle the hidden style
-        toggleVisible: function() {
+        toggleVisible: function () {
             this.$el.toggleClass('hidden', this.isHidden());
         },
         // Determine if the todo should be hidden.
-        isHidden: function() {
+        isHidden: function () {
             var isComplete = this.model.get('complete');
 
-            return isComplete ? app.TodoFilter === 'active' : app.TodoFilter === 'complete';
+            return isComplete ? Values.filter === 'active' : Values.filter === 'complete';
         },
         // Removes the todo, destroys the model in the db, and removes it from the view.
-        clear: function() {
+        clear: function () {
             this.model.destroy();
         },
         //??? new
         // If you're pressing `escape` we revert your change by simply leaving
-		// the `editing` state.
+        // the `editing` state.
         // revertOnEscape: function (e) {
         // if (e.which === ESC_KEY) {
         // this.$el.removeClass('editing');
@@ -118,8 +124,9 @@ var app = app || {};
         meta: {}
     });
 
-    Object.defineProperty(app.TodoView.prototype.meta, 'className', {
+    Object.defineProperty(TodoView.prototype.meta, 'className', {
         value: 'TodoView'
     });
+    return TodoView;
 
-})();
+});

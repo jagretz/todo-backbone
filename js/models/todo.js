@@ -1,9 +1,11 @@
-var app = app || {};
-
-(function() {
+define([
+    'underscore',
+    'backbone',
+    'backbone-nested'
+], function (_, Backbone, BackboneNested) {
     'use strict';
 
-    app.Todo = Backbone.NestedModel.extend({
+    var Todo = Backbone.NestedModel.extend({
         // default attributes: 
         defaults: {
             title: '',
@@ -19,10 +21,12 @@ var app = app || {};
         meta: {}
     });
 
-    Object.defineProperty(app.Todo.prototype.meta, 'className', {
+    Object.defineProperty(Todo.prototype.meta, 'className', {
         value: 'Todo'
     });
 
-})();
+    return Todo;
+
+});
 
 

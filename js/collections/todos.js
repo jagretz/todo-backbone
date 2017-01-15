@@ -1,27 +1,30 @@
-var app = app || {};
-
-(function() {
+define([
+    'underscore',
+    'backbone',
+    'backbone-localstorage',
+    'models/todo'
+], function (_, Backbone, Store, Todo) {
     'use strict';
 
     var Todos = Backbone.Collection.extend({
         // Reference to this collections model
-        model: app.Todo,
+        model: Todo,
         localStorage: new Backbone.LocalStorage('todos'),
         // filter down to a list of todos marked complete
-        complete: function() {
+        complete: function () {
             // return this.filter(function(todo) {
             //     return todo.get('complete');
             // });
-            return this.where({completed: true});
+            return this.where({ completed: true });
         },
         // filter down to a list of todos that ARE NOT marked complete
-        remaining: function() {
+        remaining: function () {
             // return this.without.apply(this, this.complete);
-            return this.where({completed: false});
+            return this.where({ completed: false });
         },
         // todos are displayed in sequential order despite their UUID ordering within the db.
         // This generates the next order number for a new todo.
-        nextOrder: function() {
+        nextOrder: function () {
             // if (!this.length) {
             //     return 1;
             // }
@@ -39,6 +42,7 @@ var app = app || {};
         value: 'Todos'
     });
 
-    app.todos = new Todos();
+    // app.todos = new Todos();
+    return new Todos();
 
-})();
+});

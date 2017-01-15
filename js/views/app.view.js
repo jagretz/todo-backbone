@@ -1,15 +1,23 @@
-var app = app || {};
-
-(function () {
+define([
+    'jquery',
+    'underscore',
+    'backbone',
+    'handlebars',
+    'collections/todos',
+    'views/todo.view',
+    'text!templates/stats.html',
+    'constants/app.const',
+    'common/values'
+], function ($, _, Backbone, Handlebars, Todos, TodoView, statsTemplate, Constants, Values) {
     'use strict';
 
-    var KEYS = app.const.KEYS;
-    var ID = app.const.ID;
+    var KEYS = Constants.KEYS;
+    var ID = Constants.ID;
 
     /**
      * Handles rendering of the initial todo and creating additinoal todos.
      */
-    app.AppView = Backbone.View.extend({
+    var AppView = Backbone.View.extend({
         // bind to an existing element
         el: '[data-hook="todo-app"]',
         // template for the stats at the bottom of the app
@@ -33,14 +41,14 @@ var app = app || {};
 
             // listenTo() implicitly sets the callback’s context to the view when it creates the binding
             // ??? should this be located here or on the collection object?
-            this.listenTo(app.todos, 'add', this.addOne);
-            this.listenTo(app.todos, 'reset', this.addAll);
-            this.listenTo(app.todos, 'change:complete', this.filterOne);
-            this.listenTo(app.todos, 'filter', this.filterAll);
-            this.listenTo(app.todos, 'all', _.debounce(this.render, 0)); //TODO: why debounce?
+            this.listenTo(Todos, 'add', this.addOne);
+            this.listenTo(Todos, 'reset', this.addAll);
+            this.listenTo(Todos, 'change:complete', this.filterOne);
+            this.listenTo(Todos, 'filter', this.filterAll);
+            this.listenTo(Todos, 'all', _.debounce(this.render, 0)); //TODO: why debounce?
 
             //TODO: Doc this
-            app.todos.fetch({ reset: true });
+            Todos.fetch({ reset: true });
         },
         // render the application
         // If todos exist, show the #main & #footer sections
@@ -48,10 +56,10 @@ var app = app || {};
         //      stylize the todo items
         //      update the `allCheckbox`
         render: function () {
-            var complete = app.todos.complete().length;
-            var remaining = app.todos.remaining().length;
+            var complete = Todos.complete().length;
+            var remaining = Todos.remaining().length;
 
-            if (app.todos.length) {
+            if (Todos.length) {
                 this.$footer.show();
 
                 this.$footer.html(this.statsTemplate({
@@ -61,7 +69,7 @@ var app = app || {};
 
                 this.$('#filters li a')
                     .removeClass('selected')
-                    .filter('[href="#/' + (app.TodoFilter || '') + '"]')
+                    .filter('[href="#/' + (Values.filer || '') + '"]')
                     .addClass('selected');
             } else {
                 this.$footer.hide();
@@ -72,27 +80,27 @@ var app = app || {};
         // add a single todo to the list of todos.
         // creates a view and appends to the end of the todos view
         addOne: function (todo) {
-            var view = new app.TodoView({ model: todo });
+            var view = new TodoView({ model: todo });
             $(ID.todoList).append(view.render().el);
         },
         // add all todos to the collection of todos
         addAll: function () {
             this.$(ID.todoList).html(''); // set the html to an empty block
-            app.todos.each(this.addOne, this);
+            Todos.each(this.addOne, this);
         },
         //
         filterOne: function (todo) {
             todo.trigger('visible');
         },
         filterAll: function () {
-            app.todos.each(this.filterOne, this);
+            Todos.each(this.filterOne, this);
         },
         // generate properties for a new todo
         // used by createOnEnter -- should be made private
         newAttributes: function () {
             return {
                 title: this.$input.val().trim(),
-                order: app.todos.nextOrder(),
+                order: Todos.nextOrder(),
                 complete: false
             };
         },
@@ -100,19 +108,19 @@ var app = app || {};
         // reset the input field to an empty slate.
         createOnEnter: function (event) {
             if (event.which === KEYS.ENTER_KEY && this.$input.val().trim()) {
-                app.todos.create(this.newAttributes());
+                Todos.create(this.newAttributes());
                 this.$input.val('');
             }
         },
         // clear all complete todos and destory their associated models.
         clearComplete: function () {
-            _.invoke(app.todos.complete(), 'destroy');
+            _.invoke(Todos.complete(), 'destroy');
             return false;
         },
         toggleAllComplete: function () {
             var complete = this.allCheckbox.checked;
 
-            app.todos.each(function (todo) {
+            Todos.each(function (todo) {
                 todo.save({
                     complete: complete
                 });
@@ -122,9 +130,11 @@ var app = app || {};
         meta: {}
     });
 
-    Object.defineProperty(app.AppView.prototype.meta, 'className', {
+    Object.defineProperty(AppView.prototype.meta, 'className', {
         value: 'AppView'
     });
+
+    return AppView;
 
     // function events() {
     // listenTo() implicitly sets the callback’s context to the view when it creates the binding
@@ -132,5 +142,5 @@ var app = app || {};
     //     this.listenTo(app.todos, 'reset', this.addAll);
     // }
 
-})();
+});
 

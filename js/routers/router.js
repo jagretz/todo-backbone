@@ -1,6 +1,9 @@
-var app = app || {};
-
-(function(){
+define([
+    'jquery',
+    'backbone',
+    'collections/todos',
+    'common/values'
+], function ($, Backbone, Todos, Values) {
     'use strict';
 
     var TodoRouter = Backbone.Router.extend({
@@ -10,9 +13,9 @@ var app = app || {};
         },
         // Set the filter value and trigger the filter event to be emitted on the todo collection.
         setFilter: function (param) {
-            app.TodoFilter = param || '';
+            Values.filter = param || '';
 
-            app.todos.trigger('filter');
+            Todos.trigger('filter');
         },
         // meta data about the object
         meta: {}
@@ -22,9 +25,9 @@ var app = app || {};
         value: 'TodoRouter'
     });
 
-    app.TodoRouter = new TodoRouter();
-
+    // app.TodoRouter = new TodoRouter();
+    return TodoRouter;
     //??? start recording? Doc this
-    Backbone.history.start();
+    // Backbone.history.start();
 
-})();
+});
